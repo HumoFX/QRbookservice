@@ -1,0 +1,108 @@
+{% extends '../base.html' %}
+{% block title %}Категорий{% endblock %}
+{% block content %}
+{#    <p>#}
+{#      <a href="{% url 'articles:post_share' post.id %}">#}
+{#        Share this post#}
+{#      </a>#}
+{#    </p>#}
+{#    <h2>{{ article.article_title }}</h2>#}
+{#    <p>{{ article.article_text }}</p>#}
+{#    <em>{{ article.pub_date }}</em>#}
+{#    {% if article.was_published_recently %}#}
+{#        НОВАЯ СТАТЬЯ!#}
+{#    {% endif %}#}
+{#    <hr>#}
+{#    {% if latest_comments_list %}#}
+{#        {% for c in latest_comments_list %}#}
+{#            <p>#}
+{#                <strong>{{ c.author_name }}</strong>#}
+{#                <p>{{ c.comment_text }}</p>#}
+{#            </p>#}
+{#        {% endfor %}#}
+{#    {% else %}#}
+{#        Комментарии не найдены!Станьте первым#}
+{#    {% endif %}#}
+{#    <hr>#}
+{#    <form action="{% url 'articles:leave_comment' article.id %}" method="POST">#}
+{#        {% csrf_token %}#}
+{#        <label>#}
+{#            <input type="text" required placeholder="Ваше имя" name="name">#}
+{#        </label>#}
+{#        <br>#}
+{#        <label for=""></label><textarea name="text" id="" cols="30" rows="10" placeholder="Текст комментария"></textarea>#}
+{#        <br>#}
+{#        <button type="submit">Оставить комменарий</button>#}
+{#    </form>#}
+
+{% load staticfiles %}
+    <!-- Main Style -->
+    <link href="{% static '/css/style.css' %}" rel="stylesheet">
+
+    <section id="mu-book-overview">
+			<div class="container-fluid">
+					<div class="col-md-12">
+						<div class=" mu-book-overview-area">
+                                <div class="mu-heading-area" style="margin-top: 70px">
+                                    <h2 class="mu-heading-title">{{ category.category_name }}</h2>
+                                    <span class="mu-header-dot"></span>
+                                    <p>Выберите нужную вам книгу и отсканируйте его qr-код</p>
+                                </div>
+                                <div class="mu-book-overview-content1 details" >
+                                 {% if article %}
+                                     {% for name in article %}
+                                     <div class="col-md-3 col-sm-6 col-lg-2 ">
+                                        <div class="mu-book-overview-single" >
+                                            <img src="{{ MEDIA_URL}}{{ name.image.url }}" alt="{{ name.books_name }} "  height="140px">
+                                            <h5 >{{ name.books_name }}</h5>
+                                            <br>
+                                            <p>{{ name.author_name }}</p>
+                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{ name.id }}" name="{{ name.id }}">
+                                              Показать
+                                            </button>
+                                            <div class="modal fade" id="exampleModalCenter{{ name.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                              <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                                <div class="modal-content"  >
+                                                  <div class="modal-header">
+                                                      <h5 class="modal-title" id="exampleModalCenterTitle">{{ name.books_name }}</h5>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      <img src="{{ MEDIA_URL}}{{ name.qr_book.url }}" alt="{{ name.books_name }} "  height="140px">
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary">
+                                                        <a href="{% url 'articles:onClickCat' category.id name.id %}">Закрыть</a>
+                                                    </button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                     </div>
+                                     </div>
+                                        {% endfor %}
+                                        {% else %}
+                                            <h5>Книги не найдены</h5>
+                                        {% endif %}
+                            </div>
+					</div>
+			</div>
+            </div>
+		</section>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Bootstrap -->
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+	<!-- Slick slider -->
+    <script type="text/javascript" src="{% static '/js/slick.min.js' %}"></script>
+    <!-- Counter js -->
+    <script type="text/javascript" src="{% static '/js/counter.js' %}"></script>
+    <!-- Ajax contact form  -->
+    <script type="text/javascript" src="{% static '/js/app.js' %}"></script>
+
+
+
+    <!-- Custom js -->
+	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+
+
+{% endblock %}

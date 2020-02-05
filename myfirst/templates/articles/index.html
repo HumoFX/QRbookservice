@@ -1,0 +1,335 @@
+{% extends '../base.html' %}
+{% block title %}Последние статьи{% endblock %}
+
+  {% block content %}
+
+
+  	<!-- Start Header -->
+
+	<!-- Start Featured Slider -->
+
+	
+	<!-- Start Featured Slider -->
+	
+	<!-- Start main content -->
+
+      <main role="main" xmlns:max-height="http://www.w3.org/1999/xhtml">
+
+		<!-- Start Counter -->
+		<section id="mu-counter">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-counter-area">
+
+							<div class="mu-counter-block">
+								<div class="row" >
+
+									<!-- Start Single Counter -->
+									<div class="col-md-3 col-sm-6">
+										<div class="mu-single-counter">
+											<i class="fa fa-book" aria-hidden="true"></i>
+											<div class="counter-value" data-count="{{ books_list.count }}">0</div>
+											<h5 class="mu-counter-name">Всего книг</h5>
+										</div>
+									</div>
+									<!-- / Single Counter -->
+
+									<!-- Start Single Counter -->
+									<div class="col-md-3 col-sm-6">
+										<div class="mu-single-counter">
+											<i class="fa fa-file-text-o" aria-hidden="true"></i>
+											<div class="counter-value" data-count="{{ bestsellers.count }}">0</div>
+											<h5 class="mu-counter-name">Бестселлеров</h5>
+										</div>
+									</div>
+									<!-- / Single Counter -->
+
+									<!-- Start Single Counter -->
+									<div class="col-md-3 col-sm-6">
+										<div class="mu-single-counter">
+											<i class="fa fa-users" aria-hidden="true"></i>
+											<div class="counter-value" data-count="{{ sum }}">0</div>
+											<h5 class="mu-counter-name">Активных Читателей</h5>
+										</div>
+									</div>
+									<!-- / Single Counter -->
+
+									<!-- Start Single Counter -->
+									<div class="col-md-3 col-sm-6">
+										<div class="mu-single-counter">
+											<i class="fa fa-university" aria-hidden="true"></i>
+											<div class="counter-value" data-count="03">0</div>
+											<h5 class="mu-counter-name">Установлено в ВУЗах</h5>
+										</div>
+									</div>
+									<!-- / Single Counter -->
+
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Counter -->
+		<!-- Start Book Overview -->
+
+		<section id="mu-book-overview">
+			<div class="container-fluid">
+{#				<div class="row">#}
+					<div class="col-md-12">
+
+						<div class=" mu-book-overview-area ">
+
+                                <!-- TOP Books Overview Content -->
+                                <div class="mu-heading-area">
+                                    <h2 class="mu-heading-title">ТОП Книги</h2>
+                                    <span class="mu-header-dot"></span>
+                                    <p>Выберите нужную вам книгу и отсканируйте его qr-код</p>
+                                </div>
+                                <section class="mu-book-overview-content " >
+{#                                    <section class="row flex-row flex-nowrap">#}
+                                        {% if top_book_list %}
+                                            {% for a in top_book_list %}
+    {#                                <div class="col-md-2 col-sm-6 " >#}
+                                    <div class="mu-book-overview-single" >
+                                                <img src="{{ MEDIA_URL}}{{ a.image.url }}" alt="{{ a.books_name }} " >
+                                                <h5>{{ a.books_name }}</h5>
+                                                <br>
+                                                <p>{{ a.author_name }}</p>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{ a.id }}" name="{{ a }}">
+                                          Показать
+                                        </button>
+
+                                    </div>
+    {#                                            </div>#}
+    {#                                            </div>#}
+
+
+                                        {% endfor %}
+
+
+                                        {% else %}
+                                            Книги не найдены
+                                        {% endif %}
+                                        <!-- Book Overview Single Content -->
+{#                                    </section>#}
+
+
+
+                                        <!-- / Book Overview Single Content -->
+
+                                </section>
+
+                                <!-- New Books Overview Content -->
+                                <div class="mu-heading-area" style="margin-top: 70px">
+                                    <h2 class="mu-heading-title">Новые книги</h2>
+                                    <span class="mu-header-dot"></span>
+                                    <p>Выберите нужную вам книгу и отсканируйте его qr-код</p>
+                                </div>
+                                <div class="mu-book-overview-content1 " >
+                                    {% if books_list %}
+                                        {% for a in books_list %}
+                                    <div class="col-md-3 col-sm-6 col-lg-2">
+                                        <div class="mu-book-overview-single">
+                                            <img src="{{ MEDIA_URL}}{{ a.image.url }}" alt="{{ a.books_name }} "  height="140px">
+{#                                                <span class="d-inline-block text-truncate" style="max-width: 100px;">#}
+                                                    <h5 >{{ a.books_name }}</h5>
+{#                                                </span>#}
+                                                <br>
+                                                <p>{{ a.author_name }}</p>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{ a.id }}" name="{{ a }}" >
+                                              Показать
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalCenter{{ a.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                              <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                                <div class="modal-content"  >
+                                                  <div class="modal-header">
+                                                      <h5 class="modal-title" id="exampleModalCenterTitle">{{ a.books_name }}</h5>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      <img src="{{ MEDIA_URL}}{{ a.qr_book.url }}" alt="{{ a.books_name }} "  height="140px">
+                                                  </div>
+                                                  <div class="modal-footer">
+
+                                                    <button type="button" class="btn btn-primary"   >
+                                                            <a href="{% url 'articles:onClick' a.id %}">Закрыть</a>
+                                                    </button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+    {#                                            </div>#}
+                                        {% endfor %}
+                                        {% else %}
+                                            Книги не найдены
+                                        {% endif %}
+
+
+                                    </div>
+
+                                <!-- Bestsellers Overview Content -->
+                                <div class="mu-heading-area">
+                                    <h2 class="mu-heading-title">Мировые Бестселлеры</h2>
+                                    <span class="mu-header-dot"></span>
+                                    <p>Выберите нужную вам книгу и отсканируйте его qr-код</p>
+                                </div>
+                                <div class="mu-book-overview-content " >
+
+                                        {% if bestsellers %}
+
+                                            {% for a in bestsellers %}
+
+                                    <div class="mu-book-overview-single " >
+
+
+                                                <img src="{{ MEDIA_URL}}{{ a.image.url }}" alt="{{ a.books_name }} "  height="140px">
+                                                <h5>{{ a.books_name }}</h5>
+                                                <br>
+                                                <p>{{ a.author_name }}</p>
+
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{ a.id }}" name="{{ a }}">
+                                          Показать
+                                        </button>
+
+                                    </div>
+    {#                                            </div>#}
+    {#                                            </div>#}
+
+
+                                        {% endfor %}
+                                        {% else %}
+                                            Книги не найдены
+                                        {% endif %}
+
+                                    </div>
+
+                        </div>
+
+					</div>
+							<!-- End Book Overview Content -->
+
+{#				</div>#}
+			</div>
+		</section>
+		<!-- End Book Overview -->
+
+		
+
+		<!-- Start Video Review -->
+		<section id="mu-video-review">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-video-review-area">
+
+							<div class="mu-heading-area">
+								<h2 class="mu-heading-title">Видео</h2>
+								<span class="mu-header-dot"></span>
+
+							</div>
+
+							<!-- Start Video Review Content -->
+							<div class="mu-video-review-content">
+
+
+							</div>
+							<!-- End Video Review Content -->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Start Contact -->
+		<section id="mu-contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-contact-area">
+
+							<div class="mu-heading-area">
+								<h2 class="mu-heading-title">Оставьте нам сообщение </h2>
+								<span class="mu-header-dot"></span>
+							</div>
+
+							<!-- Start Contact Content -->
+							<div class="mu-contact-content">
+                                {% load staticfiles %}
+								<form id="ajax-contact" method="post" action="{% url 'articles:success' %}" class="mu-contact-form">
+                                    {% csrf_token %}
+									<div class="form-group">                
+										<input type="text" class="form-control" placeholder="Name" id="name" name="name"  required >
+									</div>
+									<div class="form-group">                
+										<input type="email" class="form-control" placeholder="Введите ваш Email" id="email" name="email" required>
+									</div>              
+									<div class="form-group">
+										<textarea class="form-control" placeholder="Message" id="message" name="message" required></textarea>
+									</div>
+									<button type="submit" class="mu-send-msg-btn"><span>SUBMIT</span></button>
+						        </form>
+
+							</div>
+							<!-- End Contact Content -->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Contact -->
+
+		<!-- Start Google Map -->
+		<section id="mu-google-map" class="aligncenter">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d23974.524569153637!2d69.2764164!3d41.3128756!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b2a905109d7%3A0xc0fbca5082596711!2s!5e0!3m2!1sru!2s!4v1578848664824!5m2!1sru!2s" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+		</section>
+		<!-- End Google Map -->
+
+	</main>
+	
+	<!-- End main content -->	
+			
+			
+	<!-- Start footer -->
+	<footer id="mu-footer" role="contentinfo">
+		<div class="container">
+			<div class="mu-footer-area">
+				<div class="mu-social-media">
+					<a href="#"><i class="fa fa-facebook"></i></a>
+					<a href="#"><i class="fa fa-google-plus"></i></a>
+					<a href="#"><i class="fa fa-instagram" ></i></a>
+				</div>
+			</div>
+		</div>
+
+	</footer>
+	<!-- End footer -->
+
+	
+	
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Bootstrap -->
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+	<!-- Slick slider -->
+    <script type="text/javascript" src="{% static '/js/slick.min.js' %}"></script>
+    <!-- Counter js -->
+    <script type="text/javascript" src="{% static '/js/counter.js' %}"></script>
+    <!-- Ajax contact form  -->
+    <script type="text/javascript" src="{% static '/js/app.js' %}"></script>
+   
+ 
+	
+    <!-- Custom js -->
+	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+	
+  {% endblock %}

@@ -1,0 +1,25 @@
+{% extends '../base.html' %}
+{% block title %}Последние статьи{% endblock %}
+{% block content %}
+    <form action="{% url 'articles:search_results' %}" method="get">
+        <label>
+            <input type="text" name="q" placeholder="Поиск . . . ">
+        </label>
+    </form>
+    {% if books_list %}
+        {% for a in books_list %}
+            <img src="{{ MEDIA_URL }}{{ a.image_url.url }}" alt="{{ a.books_name }} " width="200px">
+            <a href="{% url 'articles:index' %}">{{ a.books_name }}</a>
+        {% endfor %}
+    {% else %}
+        Книги не найдены
+    {% endif %}
+    {% if latest_articles_list %}
+        {% for a in latest_articles_list %}
+
+            <a href="{% url 'articles:detail' a.id %}">{{ a.article_title }}</a>
+        {% endfor %}
+    {% else %}
+        Статьи не найдены
+    {% endif %}
+{% endblock %}
