@@ -24,7 +24,6 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('apps.articles.urls')),
     path('admin/', admin.site.urls),
-    url(r'^admin_tools/', include('admin_tools.urls')),
     # path('image/', include('django_qr_creator.apps')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()
