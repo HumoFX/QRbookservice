@@ -29,7 +29,7 @@ SECRET_KEY = 'dex@2msnyrbdna=8z*rmm(9&9k)&i@c@doo3849h_@5s&*9(jr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["humofx.pythonanywhere.com"]
 
 # Application definition
 
