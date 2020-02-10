@@ -146,6 +146,6 @@ MEDIA_URL = '/media/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'humootahanov7@gmail.com'
-EMAIL_HOST_PASSWORD = 'Humo6779!'
+EMAIL_HOST_PASSWORD = 'Humo8996779!'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
