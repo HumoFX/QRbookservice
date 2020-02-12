@@ -36,7 +36,7 @@ def index(request):
     books_list = Books.objects.order_by('-books_name')[:30]
     top_book_list = Books.objects.order_by('-downloaded')[:15]
     bestsellers = Books.objects.filter(bestseller=True)
-    total_down = Books.objects.get(books_name="Хоббит").total_downloads
+    total_down = Books.objects.get(books_name="Амир Темур").total_downloads
     print(total_down)
     # print(Books.objects.filter(books_name__in=bs_name[all(Bestsellers.bestseller_id.id)]))
     return render(request, 'articles/index.html', {'books_list': books_list,
