@@ -88,7 +88,7 @@
                                 <div class="mu-heading-area">
                                     <h2 class="mu-heading-title">ТОП Книги</h2>
                                     <span class="mu-header-dot"></span>
-                                    <p>Выберите нужную вам книгу и отсканируйте его qr-код</p>
+                                    <p>Выберите нужную вам книгу и отсканируйте qr-код</p>
                                 </div>
                                 <section class="mu-book-overview-content " >
 {#                                    <section class="row flex-row flex-nowrap">#}
@@ -100,7 +100,7 @@
                                                 <h5>{{ a.books_name }}</h5>
                                                 <br>
                                                 <p>{{ a.author_name }}</p>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{ a.id }}" name="{{ a }}">
+                                        <button type="button" class="btn btn-primary mu-book-overview-single-button" data-toggle="modal" data-target="#exampleModalCenter{{ a.id }}" name="{{ a }}">
                                           Показать
                                         </button>
 
@@ -128,20 +128,20 @@
                                 <div class="mu-heading-area" style="margin-top: 70px">
                                     <h2 class="mu-heading-title">Новые книги</h2>
                                     <span class="mu-header-dot"></span>
-                                    <p>Выберите нужную вам книгу и отсканируйте его qr-код</p>
+                                    <p>Выберите нужную вам книгу и отсканируйте qr-код</p>
                                 </div>
                                 <div class="mu-book-overview-content1 " >
                                     {% if books_list %}
                                         {% for a in books_list %}
                                     <div class="col-md-3 col-sm-6 col-lg-2">
                                         <div class="mu-book-overview-single">
-                                            <img src="{{ MEDIA_URL}}{{ a.image.url }}" alt="{{ a.books_name }} "  height="140px">
+                                            <img src="{{ MEDIA_URL}}{{ a.image.url }}" alt="{{ a.books_name }} "  >
 {#                                                <span class="d-inline-block text-truncate" style="max-width: 100px;">#}
                                                     <h5 >{{ a.books_name }}</h5>
 {#                                                </span>#}
                                                 <br>
                                                 <p>{{ a.author_name }}</p>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{ a.id }}" name="{{ a }}" >
+                                            <button type="button" class="btn btn-primary mu-book-overview-single-button" data-toggle="modal" data-target="#exampleModalCenter{{ a.id }}" name="{{ a }}" >
                                               Показать
                                             </button>
                                             <!-- Modal -->
@@ -156,8 +156,9 @@
                                                   </div>
                                                   <div class="modal-footer">
 
-                                                    <button type="button" class="btn btn-primary"   >
-                                                            <a href="{% url 'articles:onClick' a.id %}">Закрыть</a>
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                                        Закрыть
+{#                                                            <a href="{% url 'articles:onClick' a.id %}">Закрыть</a>#}
                                                     </button>
                                                   </div>
                                                 </div>
@@ -178,7 +179,7 @@
                                 <div class="mu-heading-area">
                                     <h2 class="mu-heading-title">Мировые Бестселлеры</h2>
                                     <span class="mu-header-dot"></span>
-                                    <p>Выберите нужную вам книгу и отсканируйте его qr-код</p>
+                                    <p>Выберите нужную вам книгу и отсканируйте qr-код</p>
                                 </div>
                                 <div class="mu-book-overview-content " >
 
@@ -189,12 +190,12 @@
                                     <div class="mu-book-overview-single " >
 
 
-                                                <img src="{{ MEDIA_URL}}{{ a.image.url }}" alt="{{ a.books_name }} "  height="140px">
-                                                <h5>{{ a.books_name }}</h5>
+                                                <img src="{{ MEDIA_URL}}{{ a.image.url }}" alt="{{ a.books_name }} " >
+                                                <h6>{{ a.books_name }}</h6>
                                                 <br>
                                                 <p>{{ a.author_name }}</p>
 
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{ a.id }}" name="{{ a }}">
+                                        <button type="button" class="btn btn-primary mu-book-overview-single-button" data-toggle="modal" data-target="#exampleModalCenter{{ a.id }}" name="{{ a }}">
                                           Показать
                                         </button>
 

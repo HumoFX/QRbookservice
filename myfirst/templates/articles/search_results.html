@@ -22,7 +22,7 @@
                                                 <h4 >{{ name.books_name }}</h4>
                                                 <br>
                                                 <p>{{ name.author_name }}</p>
-                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter{{ name.id }}" name="{{ name.id }}">
+                                                 <button type="button" class="btn btn-primary mu-book-overview-single-button" data-toggle="modal" data-target="#exampleModalCenter{{ name.id }}" name="{{ name.id }}">
                                                   Показать
                                                 </button>
                                                 <div class="modal fade" id="exampleModalCenter{{ name.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -35,8 +35,9 @@
                                                           <img src="{{ MEDIA_URL}}{{ name.qr_book.url }}" alt="{{ name.books_name }} "  height="140px">
                                                       </div>
                                                       <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary">
-                                                            <a href="{% url 'articles:onClickSearch' name.id %}">Закрыть</a>
+                                                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                                            Закрыть
+{#                                                            <a href="{% url 'articles:onClickSearch' name.id %}">Закрыть</a>#}
                                                         </button>
                                                       </div>
                                                     </div>
